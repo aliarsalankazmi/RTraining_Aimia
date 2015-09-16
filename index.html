@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>R Crash Course</title>
+  <meta charset="utf-8">
+  <meta name="description" content="R Crash Course">
+  <meta name="author" content="Ali Arsalan Kazmi">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="./assets/css/custom.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>R Crash Course</h1>
+    <h2>A hands-on course for basic data analysis and reporting in R</h2>
+    <p>Ali Arsalan Kazmi<br/>Insights Analyst @Aimia</p>
+  </hgroup>
+    <a href="https://github.com/aliarsalankazmi/RTraining/zipball/gh-pages" class="example">
+     Download
+    </a>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>A bit about R</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>GNU Free</li>
+<li>Data analysis and superior visualisation </li>
+<li>Burgeoning R community - 6,912 packages as of July 2015 on <a href="https://cran.r-project.org/web/views/">CRAN</a></li>
+<li><a href="http://blog.revolutionanalytics.com/2015/05/r-in-sql-server.html">Integration of R in SQL Server 2016</a></li>
+<li><a href="http://spectrum.ieee.org/computing/software/the-2015-top-ten-programming-languages">#6 in IEEE 2015 Top Programming Languages</a></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="sectionBreak" style="background:url(assets/img/fundamentals2.jpg);">
+  <hgroup>
+    <h2>The Fundamentals</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Data Types</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <ul>
+<li>Abstraction</li>
+<li>Think <a href="http://www.sciencemag.org/content/103/2684/677.extract">Scales of measurement in Statistics</a></li>
+<li>Most common types:
+
+<ul>
+<li>Numeric (decimal numbers, increased precision)</li>
+<li>Integer (simple numbers)</li>
+<li>Logical (Boolean True and False values)</li>
+<li>Character (Textual data)</li>
+</ul></li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <pre><code class="r">myNumeric &lt;- 10.5
+class(myNumeric)
+</code></pre>
+
+<pre><code>## [1] &quot;numeric&quot;
+</code></pre>
+
+<pre><code class="r">myNumeric &lt;- 10
+class(myNumeric)
+</code></pre>
+
+<pre><code>## [1] &quot;numeric&quot;
+</code></pre>
+
+<pre><code class="r">myInteger &lt;- as.integer(10.5)
+class(myInteger)
+</code></pre>
+
+<pre><code>## [1] &quot;integer&quot;
+</code></pre>
+
+<pre><code class="r">12 &gt; myNumeric
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">class(12 &gt; myNumeric)
+</code></pre>
+
+<pre><code>## [1] &quot;logical&quot;
+</code></pre>
+
+<pre><code class="r">myCharacter &lt;- &#39;This is my character&#39;
+myCharacter
+</code></pre>
+
+<pre><code>## [1] &quot;This is my character&quot;
+</code></pre>
+
+<pre><code class="r">class(myCharacter)
+</code></pre>
+
+<pre><code>## [1] &quot;character&quot;
+</code></pre>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Data Structures</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <ul>
+<li>Vectors</li>
+<li>Matrices and Arrays</li>
+<li>Dataframes</li>
+<li>Lists</li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <pre><code class="r">myVector &lt;- c(1, 2, 3, 4)
+myVector
+</code></pre>
+
+<pre><code>## [1] 1 2 3 4
+</code></pre>
+
+<pre><code class="r">myMatrix &lt;- matrix(c(1, 2, 3, 4), ncol = 2)
+myMatrix
+</code></pre>
+
+<pre><code>##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+</code></pre>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Data Structures</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Data Structures</h2>
+  </hgroup>
+  <article data-timings="">
+    <table><thead>
+<tr>
+<th>Dimensionality</th>
+<th>Homogeneous</th>
+<th>Heterogeneous</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Atomic Vector</td>
+<td>List</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Matrix</td>
+<td>Dataframe</td>
+</tr>
+<tr>
+<td>n</td>
+<td>Array</td>
+<td></td>
+</tr>
+</tbody></table>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Control Structures in R</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Conditional Functions</h3>
+
+<ul>
+<li>If Else</li>
+<li>Ifelse</li>
+<li>Arithmetic and Boolean Operators</li>
+</ul>
+
+<h3>Loop Functions</h3>
+
+<ul>
+<li>for Loop</li>
+<li>while Loop</li>
+<li>repeat Loop</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Functions</h2>
+  </hgroup>
+  <article data-timings="">
+    <blockquote><p>Everything in R is an object.</p>
+<p>Every process in R occurs as a result of a function call.</p>
+<p><small>John Chambers (Developer of S Programming Language)</small></p></blockquote>
+
+<ul>
+<li>Functional Programming</li>
+<li>Modularity</li>
+<li>Automation</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Functions</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <ul>
+<li>Function Structure
+
+<ul>
+<li>Arguments/Formals</li>
+<li>Body</li>
+<li>Environment</li>
+</ul></li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <pre><code class="r">sampleFunction &lt;- function(numbers){
+roundedUp &lt;- ceiling(numbers)
+roundedDown &lt;- floor(numbers)
+signf &lt;- signif(numbers, 3)
+df &lt;- data.frame(number = numbers, 
+        roundedUp = roundedUp, 
+        roundedDown = roundedDown, 
+        significantNo = signf)
+return(df)
+}
+</code></pre>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Importing and Exporting Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Multiple formats can be imported: CSV; TXT; JSON; Excel; SAS; SPSS; RData</li>
+<li>Scripting or GUI</li>
+<li>Packages or Base R</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="sectionBreak" style="background:url(assets/img/intermediary4.jpg);">
+  <hgroup>
+    <h2>Analysing and producing Results</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Basic Data Analysis</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Filtering/Subsetting</li>
+<li>Selecting Columns</li>
+<li>Merging/Joining data sets</li>
+<li>Apply family of R functions</li>
+<li>dplyr and tidyr (or reshape2)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Basic Data Analysis</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Apply family of R Functions</h3>
+
+<ul class = "build incremental">
+<li>Iteratively process data in various data structures</li>
+<li>Iteratively process grouped data</li>
+<li>apply(), lapply(), sapply(), mapply(), tapply(), and others</li>
+</ul>
+
+<ul>
+<li><a href="https://nsaunders.wordpress.com/2010/08/20/a-brief-introduction-to-apply-in-r/">https://nsaunders.wordpress.com/2010/08/20/a-brief-introduction-to-apply-in-r/</a></li>
+</ul>
+
+<h3>dplyr</h3>
+
+<ul class = "build incremental">
+<li>Efficient code, simplified syntax</li>
+<li>Variety of manipulation techniques</li>
+<li>In-memory database support and external database support
+
+<ul>
+<li>In-memory database: SQLite</li>
+<li>External database: PostgreSQL, MySQL, Bigquery
+<p class="text-warning"><small>Caveat: Only Dataframes supported</small></p></li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Basic Data Analysis</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Tidying or Reshaping data</h3>
+
+<div style='float:left;width:48%;' class='centered'>
+  <ul>
+<li>Wide format</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>City</th>
+<th>Population</th>
+<th>Rainfall (mm/year)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Riyadh</td>
+<td>100,000,000</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Dubai</td>
+<td>10,000,000</td>
+<td>20</td>
+</tr>
+<tr>
+<td>London</td>
+<td>20,000,000</td>
+<td>100</td>
+</tr>
+</tbody></table>
+
+</div>
+<div style='float:right;width:48%;'>
+  <ul>
+<li>Long format</li>
+</ul>
+
+<table><thead>
+<tr>
+<th>City</th>
+<th>Variable</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Riyadh</td>
+<td>Population</td>
+<td>100,000,000</td>
+</tr>
+<tr>
+<td>Riyadh</td>
+<td>Rainfall</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Dubai</td>
+<td>Population</td>
+<td>10,000,000</td>
+</tr>
+<tr>
+<td>Dubai</td>
+<td>Rainfall</td>
+<td>20</td>
+</tr>
+<tr>
+<td>London</td>
+<td>Population</td>
+<td>20,000,000</td>
+</tr>
+<tr>
+<td>London</td>
+<td>Rainfall</td>
+<td>100</td>
+</tr>
+</tbody></table>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Merging Data sets</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Using base R to join data sets: merge(), rbind(), cbind()</li>
+<li>Using packages to join data sets: dplyr</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="sectionBreak" style="background:url(assets/img/penultimate1.jpg);">
+  <hgroup>
+    <h2>Visualisation</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Graphics in R</h2>
+  </hgroup>
+  <article data-timings="">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="assets/img/carousel1.png" alt="Bubble Charts">
+    </div>
+
+    <div class="item">
+      <img src="assets/img/carousel2.png" alt="Heat Maps">
+    </div>
+
+    <div class="item">
+      <img src="assets/img/carousel3.jpg" alt="World Maps">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only"><</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">></span>
+  </a>
+</div>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Plotting various charts</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li><p>Basic Charts</p>
+
+<ul>
+<li>Bar Charts</li>
+<li>Line Charts</li>
+<li>Area Charts</li>
+<li>etc.</li>
+</ul></li>
+<li><p>Statistical Charts</p>
+
+<ul>
+<li>Tukey&#39;s Boxplots</li>
+<li>Scatterplots</li>
+<li>Bubble Charts</li>
+<li>etc.</li>
+</ul></li>
+<li><p>Exotic Charts</p>
+
+<ul>
+<li>Streamgraphs</li>
+<li>Wordclouds</li>
+<li>Heatmaps</li>
+<li>etc.</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Ggplot2</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Grammar of Graphics</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="sectionBreak" style="background:url(assets/img/final1.jpg);">
+  <hgroup>
+    <h2>Reproducible Research</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>knitr</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul class = "build incremental">
+<li>Literate Programming</li>
+<li>Combine visualisations with explanatory text</li>
+<li>Output: HTML/Web, PDF, and Word documents</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>Writing a basic report</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Writing a complex report</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>Final exercise</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>References</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='A bit about R'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='The Fundamentals'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Data Types'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Data Structures'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Data Structures'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Data Structures'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Control Structures in R'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Functions'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Functions'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Importing and Exporting Data'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Analysing and producing Results'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Basic Data Analysis'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Basic Data Analysis'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Basic Data Analysis'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Merging Data sets'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Visualisation'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Graphics in R'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Plotting various charts'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Ggplot2'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Reproducible Research'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='knitr'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Writing a basic report'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Writing a complex report'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Final exercise'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='References'>
+         25
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/popcornjs/js/popcorn-complete.min.js"></script>
+<script src="libraries/widgets/popcornjs/js/popcorn-custom.js"></script>
+
+  <script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <script src="libraries/widgets/popcornjs/js/popcorn-complete.min.js"></script>
+  <script src="libraries/widgets/popcornjs/js/popcorn-custom.js"></script>
+  </html>
